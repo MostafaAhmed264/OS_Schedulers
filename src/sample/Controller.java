@@ -17,6 +17,8 @@ public class Controller {
     private Button addProcessBtn;
     @FXML
     private TextArea myText;
+    @FXML
+    private Button genChartBtn;
 
     public void addProcess(ActionEvent event)
     {
@@ -34,5 +36,11 @@ public class Controller {
             System.out.println(e);
         }
 
+    }
+
+    public void Run(ActionEvent event)
+    {
+        FCFS fcfs = new FCFS(scheduler);
+        fcfs.Run();
     }
 }

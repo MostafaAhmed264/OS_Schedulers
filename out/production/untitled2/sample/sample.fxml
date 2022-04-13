@@ -23,7 +23,7 @@
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button fx:id="genChartBtn" layoutX="341.0" layoutY="400.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="186.0" text="Generate Chart">
+      <Button fx:id="genChartBtn" layoutX="341.0" layoutY="400.0" mnemonicParsing="false" onAction="#Run" prefHeight="49.0" prefWidth="186.0" text="Generate Chart">
          <font>
             <Font size="20.0" />
          </font>
