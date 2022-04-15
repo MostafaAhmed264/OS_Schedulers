@@ -3,13 +3,12 @@ package sample;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class SJFPreemptive {
-    private Scheduler scheduler;
-    public ArrayList<Process> SjfProcesses;
+public class SJFPreemptive extends Schedulers {
 
     public SJFPreemptive(Scheduler scheduler) {
-        this.scheduler = scheduler;
+        super(scheduler);
     }
+
 
     public int searchMinRemainingTime(ArrayList<Process> processes, int end) {
         float min = Float.MAX_VALUE;
@@ -25,11 +24,11 @@ public class SJFPreemptive {
     }
 
     public void run() {
-        SjfProcesses = new ArrayList<>();
+        outProcesses = new ArrayList<>();
         Collections.sort(scheduler.processes);
         Process currentProcess;
         currentProcess = scheduler.processes.get(0);
-        SjfProcesses.add(currentProcess);
+        outProcesses.add(currentProcess);
         scheduler.contextSwitchTime.add((float) 0);
         int index;
         float remTime;
@@ -40,7 +39,7 @@ public class SJFPreemptive {
                 scheduler.time += (currentProcess.getBurstTime() - currentProcess.getRemainingTime());
                 scheduler.contextSwitchTime.add(scheduler.time);
                 currentProcess = scheduler.processes.get(i);
-                SjfProcesses.add(currentProcess);
+                outProcesses.add(currentProcess);
             } else if (remTime <= 0) {
                 scheduler.time += currentProcess.getRemainingTime();
                 scheduler.contextSwitchTime.add(scheduler.time);
@@ -53,7 +52,7 @@ public class SJFPreemptive {
                 }
                 currentProcess = scheduler.processes.get(index);
                 currentProcess.newStart = scheduler.time;
-                SjfProcesses.add(currentProcess);
+                outProcesses.add(currentProcess);
             }
         }
         scheduler.time += currentProcess.getRemainingTime();
@@ -65,7 +64,7 @@ public class SJFPreemptive {
                 break;
             } else {
                 currentProcess = scheduler.processes.get(index);
-                SjfProcesses.add(currentProcess);
+                outProcesses.add(currentProcess);
                 scheduler.time += currentProcess.getRemainingTime();
                 scheduler.contextSwitchTime.add(scheduler.time);
                 currentProcess.setRemainingTime(0f);

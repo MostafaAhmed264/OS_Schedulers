@@ -3,9 +3,11 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -19,6 +21,7 @@ public class Controller {
     private Scene scene;
     private Stage stage;
     private Parent root;
+    public static Schedulers schedulers;
     @FXML
     private TextField arrivalTimeField;
     @FXML
@@ -29,6 +32,13 @@ public class Controller {
     private TextArea myText;
     @FXML
     private Button genChartBtn;
+    @FXML
+    private RadioButton fcfsBtn;
+    @FXML
+    private RadioButton sjfPreemptiveBtn;
+    @FXML
+    private RadioButton sjfNonPreemptiveBtn;
+
 
     public void addProcess(ActionEvent event) {
         try {
@@ -45,12 +55,28 @@ public class Controller {
     }
 
     public void switchToScene2(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void Action(ActionEvent event) {
-        System.out.println("Hello");
-        SJFPreemptive sjfPreemptive = new SJFPreemptive(scheduler);
-        sjfPreemptive.run();
+    public void createScheduler() {
+        if (fcfsBtn.isSelected()) {
+            schedulers = new FCFS(scheduler);
+        }
+        if (sjfPreemptiveBtn.isSelected()) {
+            schedulers = new SJFPreemptive(scheduler);
+        }
+        if (sjfNonPreemptiveBtn.isSelected()) {
+            schedulers = new SJFNonPreemptive(scheduler);
+        }
+    }
+
+    public void Action(ActionEvent event) throws IOException {
+        schedulers.run();
+        System.out.println(schedulers.outProcesses);
+        System.out.println(scheduler.contextSwitchTime);
     }
 }
