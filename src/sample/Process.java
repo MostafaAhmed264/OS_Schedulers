@@ -1,5 +1,7 @@
 package sample;
 
+import static sample.Controller3.schedulers;
+
 public class Process implements Comparable<Process> {
     private final float arrivalTime;
     private float burstTime;
@@ -54,11 +56,19 @@ public class Process implements Comparable<Process> {
     }
 
     public int compareTo(Process o) {
-        if (this.getArrivalTime() == o.getArrivalTime())
-            if (this.getID() > o.getID())
-                return 1;
-            else
-                return -1;
+        if (this.getArrivalTime() == o.getArrivalTime()) {
+            if (schedulers instanceof PriorityPreemptive || schedulers instanceof PriorityNonPreemptive) {
+                if (this.getPriority() > o.getPriority())
+                    return 1;
+                else
+                    return -1;
+            } else {
+                if (this.getID() > o.getID())
+                    return 1;
+                else
+                    return -1;
+            }
+        }
         if (this.getArrivalTime() > o.getArrivalTime())
             return 1;
         else

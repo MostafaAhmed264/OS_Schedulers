@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="653.0" prefWidth="867.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <children>
-        <Button fx:id="addProcessBtn" disable="true" layoutX="514.0" layoutY="547.0" mnemonicParsing="false" onAction="#addProcess" prefHeight="63.0" prefWidth="143.0" text="Add Process">
+        <Button fx:id="addProcessBtn" layoutX="664.0" layoutY="547.0" mnemonicParsing="false" onAction="#addProcess" prefHeight="63.0" prefWidth="143.0" text="Add Process">
             <font>
                 <Font size="20.0" />
             </font>
@@ -18,16 +18,21 @@
                 <Font size="20.0" />
             </font>
         </TextField>
-        <TextField fx:id="burstField" layoutX="273.0" layoutY="547.0" prefHeight="63.0" prefWidth="174.0" promptText="Burst Time">
+        <TextField fx:id="burstField" layoutX="247.0" layoutY="547.0" prefHeight="63.0" prefWidth="174.0" promptText="Burst Time">
             <font>
                 <Font size="20.0" />
             </font>
         </TextField>
-        <Button fx:id="genChartBtn" disable="true" layoutX="341.0" layoutY="400.0" mnemonicParsing="false" onAction="#Action" prefHeight="49.0" prefWidth="186.0" text="NEXT">
+        <Button fx:id="genChartBtn" layoutX="341.0" layoutY="400.0" mnemonicParsing="false" onAction="#Action" prefHeight="49.0" prefWidth="186.0" text="NEXT">
             <font>
                 <Font size="20.0" />
             </font>
         </Button>
         <TextArea fx:id="myText" layoutX="334.0" layoutY="71.0" prefHeight="200.0" prefWidth="200.0" text="ID         ArrivalTime        BurstTime" />
+      <TextField fx:id="priorityField" layoutX="447.0" layoutY="547.0" prefHeight="63.0" prefWidth="174.0" promptText="Priority">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
     </children>
 </AnchorPane>
