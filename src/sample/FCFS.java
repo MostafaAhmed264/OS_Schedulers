@@ -2,21 +2,19 @@ package sample;
 
 import java.util.Collections;
 
-public class FCFS {
-    private Scheduler scheduler;
+public class FCFS extends Schedulers {
+
 
     public FCFS(Scheduler scheduler) {
-        this.scheduler = scheduler;
+        super(scheduler);
     }
 
-    public void Run()
-    {
-        scheduler.contextSwitchTime.add((float)0);
+    public void run() {
+        scheduler.contextSwitchTime.add((float) 0);
         Collections.sort(scheduler.processes);
-        for(int i = 0; i < scheduler.processes.size(); i++)
-        {
-            if(scheduler.time < scheduler.processes.get(i).getArrivalTime())
-            {
+        outProcesses.addAll(scheduler.processes);
+        for (int i = 0; i < scheduler.processes.size(); i++) {
+            if (scheduler.time < scheduler.processes.get(i).getArrivalTime()) {
                 scheduler.time = scheduler.processes.get(i).getArrivalTime();
                 scheduler.contextSwitchTime.add(scheduler.processes.get(i).getArrivalTime());
             }

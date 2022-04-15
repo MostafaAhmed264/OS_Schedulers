@@ -1,17 +1,20 @@
 package sample;
 
-public class Process implements Comparable<Process>{
+public class Process implements Comparable<Process> {
     private final float arrivalTime;
     private float burstTime;
     private static int counter = 0;
     private final int ID;
     private int priority;
-    private float remainingTime;
+    public float remainingTime;
+    public float newStart;
 
     public Process(float arrivalTime, float burstTime) {
         this.arrivalTime = arrivalTime;
         this.burstTime = burstTime;
         this.ID = counter++;
+        this.newStart = arrivalTime;
+        this.remainingTime = burstTime;
     }
 
     public int getPriority() {
@@ -51,20 +54,20 @@ public class Process implements Comparable<Process>{
     }
 
     public int compareTo(Process o) {
-        if(this.getArrivalTime() == o.getArrivalTime())
-            if(this.getID() > o.getID())
+        if (this.getArrivalTime() == o.getArrivalTime())
+            if (this.getID() > o.getID())
                 return 1;
             else
                 return -1;
-        if(this.getArrivalTime() > o.getArrivalTime())
+        if (this.getArrivalTime() > o.getArrivalTime())
             return 1;
         else
             return -1;
     }
 
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return String.valueOf(this.ID);
     }
 
