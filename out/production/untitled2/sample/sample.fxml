@@ -38,9 +38,10 @@
             </toggleGroup>
         </RadioButton>
         <RadioButton fx:id="fcfsBtn" layoutX="37.0" layoutY="77.0" mnemonicParsing="false" onAction="#createScheduler" text="FCFS">
-         <toggleGroup>
-            <ToggleGroup fx:id="schedulers" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="sjfNonPreemptiveBtn" layoutX="37.0" layoutY="154.0" mnemonicParsing="false" onAction="#createScheduler" prefHeight="17.0" prefWidth="214.0" text="Shortest Job First (Non Preemptive)" />
+            <toggleGroup>
+                <ToggleGroup fx:id="schedulersGroup" />
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton fx:id="sjfNonPreemptiveBtn" layoutX="37.0" layoutY="154.0" mnemonicParsing="false" onAction="#createScheduler" prefHeight="17.0" prefWidth="214.0" text="Shortest Job First (Non Preemptive)" toggleGroup="$schedulersGroup" />
     </children>
 </AnchorPane>
